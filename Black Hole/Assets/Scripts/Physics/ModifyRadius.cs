@@ -12,14 +12,9 @@ public class ModifyRadius : MonoBehaviour
 
     private void Update()
     {
-        radius = CalculateSchwarzschild(mass);
+        radius = PhysicsCalculations.CalculateSchwarzschildToFloat(mass);
 
         transform.localScale = new Vector3(radius, radius, radius);
-    }
-
-    private float CalculateSchwarzschild(double mass)
-    {
-        return Convert.ToSingle((2 * PhysicsConstants.G * mass) / (Math.Pow(PhysicsConstants.c, 2)));
     }
 
 }
