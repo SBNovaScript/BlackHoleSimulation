@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ModifyRadius : MonoBehaviour
 {
-    public double mass = PhysicsConstants.earthMass;
+    public double mass = PhysicsConstants.EARTH_MASS;
 
     [SerializeField]
     private float radius;

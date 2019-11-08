@@ -7,5 +7,5 @@
     public const double c = 299792458;
 
     // Earth's Mass (kg)
-    public const double earthMass = 5.972e24;
+    public const double EARTH_MASS = 5.972e24;
 }
