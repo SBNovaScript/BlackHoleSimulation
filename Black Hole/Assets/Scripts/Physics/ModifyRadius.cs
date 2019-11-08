@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ModifyRadius : MonoBehaviour
 {
-    public double mass;
+    public double mass = PhysicsConstants.earthMass;
 
     private void Update()
     {

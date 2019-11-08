@@ -5,4 +5,7 @@
 
     // Speed of light (m/s)
     public const double c = 299792458;
+
+    // Earth's Mass (kg)
+    public const double earthMass = 5.972e24;
 }
