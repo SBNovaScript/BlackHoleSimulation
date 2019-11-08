@@ -7,9 +7,12 @@ public class ModifyRadius : MonoBehaviour
 {
     public double mass = PhysicsConstants.earthMass;
 
+    [SerializeField]
+    private float radius;
+
     private void Update()
     {
-        float radius = CalculateSchwarzschild(mass);
+        radius = CalculateSchwarzschild(mass);
 
         transform.localScale = new Vector3(radius, radius, radius);
     }
