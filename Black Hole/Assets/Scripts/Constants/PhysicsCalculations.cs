@@ -6,7 +6,18 @@ public static class PhysicsCalculations
     {
         double schwarzschildRadius = (2 * PhysicsConstants.G * mass) / (Math.Pow(PhysicsConstants.c, 2));
 
-        // Converts double to float
-        return Convert.ToSingle(schwarzschildRadius);
+        return ConvertDoubleToFloat(schwarzschildRadius);
+    }
+
+    public static double CaclulateEscapeVelocityToFloat(double mass, double radius)
+    {
+        double escapeVelocity = Math.Sqrt((2 * PhysicsConstants.G * mass) / radius);
+
+        return ConvertDoubleToFloat(escapeVelocity);
+    }
+
+    public static float ConvertDoubleToFloat(double value)
+    {
+        return Convert.ToSingle(value);
     }
 }
