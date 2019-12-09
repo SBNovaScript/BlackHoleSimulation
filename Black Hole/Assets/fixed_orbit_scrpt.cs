@@ -7,6 +7,7 @@ public class fixed_orbit_scrpt : MonoBehaviour
     public GameObject orbitTarget;
     public float radius;
     public float secondsPerOrbit;
+    public float yHeight;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +21,6 @@ public class fixed_orbit_scrpt : MonoBehaviour
         transform.position = orbitTarget.transform.position;
 
         float orbitPercent = Time.realtimeSinceStartup / secondsPerOrbit * 2 * Mathf.PI;
-        transform.position += new Vector3(Mathf.Cos(orbitPercent) * radius, 0, Mathf.Sin(orbitPercent) * radius);
+        transform.position += new Vector3(Mathf.Cos(orbitPercent) * radius, yHeight, Mathf.Sin(orbitPercent) * radius);
     }
 }
