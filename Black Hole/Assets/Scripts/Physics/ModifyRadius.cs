@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,7 +9,12 @@ public class ModifyRadius : MonoBehaviour
     //reference to text displaying data about the sphere
     public GameObject infoText;
     //string values to be shown in said window
-    private string[] mFieldNames = {"Radius", "Mass", "Escape Velocity"};
+    private Dictionary<string, string> mFieldNamesWithValues = new Dictionary<string, string>() 
+    {
+        { "Radius", "0"},
+        { "Mass", "0" },
+        { "Escape Velocity", "0" } 
+    };
 
     // In Meters
     [SerializeField]
@@ -28,27 +33,28 @@ public class ModifyRadius : MonoBehaviour
         escapeVelocity = PhysicsCalculations.CaclulateEscapeVelocityToFloat(mass, radius);
 
         transform.localScale = new Vector3(radius, radius, radius);
-        string[] args = { (radius*1000).ToString() +" mm", mass.ToString()+" kg", (escapeVelocity/1000).ToString() +" km/s"};
-        updateInfoWindow(args);
+
+        // Get the latest data values from the object, and display them
+        // To the provided info text box.
+        ExtractDisplayableDataValues();
+        UpdateInfoWindow();
     }
 
-
-    private void updateInfoWindow(string[] values)
+    private void ExtractDisplayableDataValues()
     {
-        string outputString = "";
-        for (int i = 0; i < mFieldNames.Length; i++)
-        {
-            outputString += mFieldNames[i] + ": ";
-            if (i < values.Length)
-            {
-                outputString += values[i];
-            } else
-            {
-                outputString += "NO_VALUE";
-            }
-            outputString += "\n";
-        }
-        infoText.GetComponent<TextMesh>().text = outputString;
+        //TODO: Remove magic numbers and place conversions into their own functions. 
+        mFieldNamesWithValues["Radius"] = (radius * 1000).ToString() + " mm";
+        mFieldNamesWithValues["Mass"] = mass.ToString() + " kg";
+        mFieldNamesWithValues["Escape Velocity"] = (escapeVelocity / 1000).ToString() + " km/s";
+    }
+
+    private void UpdateInfoWindow()
+    {
+        // Maps over each key + value pair using Linq.
+        IEnumerable<string> outputString = 
+            mFieldNamesWithValues.Select(field => field.Key + ": " + field.Value);
+
+        infoText.GetComponent<TextMesh>().text = string.Join(Environment.NewLine, outputString);
     }
 
 }
