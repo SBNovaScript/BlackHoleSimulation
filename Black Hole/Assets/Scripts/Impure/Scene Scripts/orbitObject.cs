@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class orbitObject : MonoBehaviour
 {
@@ -8,7 +6,7 @@ public class orbitObject : MonoBehaviour
     public float radius;
     public float secondsPerOrbit;
 
-    void Update()
+    private void Update()
     {
 
         transform.position = orbitTarget.transform.position;
