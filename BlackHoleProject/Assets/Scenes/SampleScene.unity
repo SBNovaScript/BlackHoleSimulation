@@ -212,7 +212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04e830219082d254db4c3987e1c992cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  properTimeFrame: {fileID: 534669902}
+  properTimeFrame: {fileID: 1094579261}
   blackHole: {fileID: 1050881467}
   isBlackHole: 1
 --- !u!23 &372246670
@@ -351,10 +351,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534669902}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.64, z: -4.45}
+  m_LocalPosition: {x: 0, y: 1.82, z: -1.62}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1455900612}
+  - {fileID: 1094579262}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -383,9 +384,9 @@ GameObject:
   - component: {fileID: 1050881471}
   - component: {fileID: 1050881470}
   - component: {fileID: 1050881469}
-  - component: {fileID: 1050881468}
   - component: {fileID: 1050881473}
   - component: {fileID: 1050881472}
+  - component: {fileID: 1050881468}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -393,19 +394,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!135 &1050881468
-SphereCollider:
+--- !u!114 &1050881468
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1050881467}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5002bd644711d2a42bcf7ac97f39c6bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeScale: 1
+  distanceScale: 1
+  velocityScale: 1
+  velocityScaleF: 1
 --- !u!23 &1050881469
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -480,7 +484,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orbitTargets: []
   initialVelocty: {x: 0, y: 0, z: 0}
-  timeStep: 0
+  timeStep: 1
   mass: 5.972e+24
 --- !u!54 &1050881473
 Rigidbody:
@@ -498,6 +502,36 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &1094579261
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1094579262}
+  m_Layer: 0
+  m_Name: Reference
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1094579262
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1094579261}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.2, z: -0.12}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 534669905}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1455900611
 GameObject:
   m_ObjectHideFlags: 0
@@ -525,7 +559,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1455900611}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.93195057, y: 0.35, z: 2.41}
+  m_LocalPosition: {x: -0.136, y: 0.002, z: 1.453}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 534669905}
@@ -588,7 +622,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04e830219082d254db4c3987e1c992cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  properTimeFrame: {fileID: 534669902}
+  properTimeFrame: {fileID: 1094579261}
   blackHole: {fileID: 1050881467}
   isBlackHole: 0
 --- !u!1 &1490230406
@@ -655,7 +689,6 @@ GameObject:
   - component: {fileID: 1549758194}
   - component: {fileID: 1549758197}
   - component: {fileID: 1549758196}
-  - component: {fileID: 1549758195}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -677,20 +710,6 @@ Transform:
   m_Father: {fileID: 1050881471}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &1549758195
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1549758193}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!23 &1549758196
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -794,10 +813,10 @@ GameObject:
   - component: {fileID: 2141332363}
   - component: {fileID: 2141332362}
   - component: {fileID: 2141332361}
-  - component: {fileID: 2141332360}
-  - component: {fileID: 2141332359}
   - component: {fileID: 2141332364}
   - component: {fileID: 2141332365}
+  - component: {fileID: 2141332359}
+  - component: {fileID: 2141332360}
   m_Layer: 0
   m_Name: moon
   m_TagString: Untagged
@@ -805,24 +824,7 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2141332359
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2141332358}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cccb293f151fc84ca8a9ff20c531493, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  orbitTargets:
-  - {fileID: 1050881467}
-  initialVelocty: {x: 0, y: -2000.022, z: 2000.022}
-  timeStep: 1
-  mass: 7.34767309e+22
---- !u!135 &2141332360
+--- !u!135 &2141332359
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -835,6 +837,22 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2141332360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2141332358}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5002bd644711d2a42bcf7ac97f39c6bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeScale: 1
+  distanceScale: 1
+  velocityScale: 1
+  velocityScaleF: 1
 --- !u!23 &2141332361
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -888,7 +906,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2141332358}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.8, y: 3.936, z: 2.348}
+  m_LocalPosition: {x: 3.8, y: 3.936, z: 3.755}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children: []
   m_Father: {fileID: 0}
@@ -917,7 +935,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2141332358}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9cccb293f151fc84ca8a9ff20c531493, type: 3}
   m_Name: 
@@ -925,5 +943,5 @@ MonoBehaviour:
   orbitTargets:
   - {fileID: 1050881467}
   initialVelocty: {x: 0, y: -2000.022, z: 2000.022}
-  timeStep: 0
+  timeStep: 1
   mass: 7.34767309e+22
