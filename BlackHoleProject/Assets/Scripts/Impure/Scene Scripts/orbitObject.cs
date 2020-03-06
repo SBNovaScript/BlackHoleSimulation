@@ -17,8 +17,6 @@ public class orbitObject : MonoBehaviour
         initialVelocty.y = (float)((double)initialVelocty.y / scaleManager.velocityScale);
 
         rb.velocity = initialVelocty;
-        Debug.Log(rb.velocity);
-
     }
 
 
