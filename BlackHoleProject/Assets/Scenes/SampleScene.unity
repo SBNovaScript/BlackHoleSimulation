@@ -816,7 +816,6 @@ GameObject:
   - component: {fileID: 2141332364}
   - component: {fileID: 2141332359}
   - component: {fileID: 2141332360}
-  - component: {fileID: 2141332365}
   m_Layer: 0
   m_Name: moon
   m_TagString: Untagged
@@ -928,19 +927,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &2141332365
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2141332358}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cccb293f151fc84ca8a9ff20c531493, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  orbitTargets: []
-  initialVelocty: {x: 0, y: 0, z: 0}
-  timeStep: 0
-  mass: 5.972e+24
