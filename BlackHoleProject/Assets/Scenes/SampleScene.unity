@@ -193,6 +193,7 @@ GameObject:
   - component: {fileID: 372246671}
   - component: {fileID: 372246670}
   - component: {fileID: 372246668}
+  - component: {fileID: 372246669}
   m_Layer: 0
   m_Name: BlackHoleTime
   m_TagString: Untagged
@@ -213,7 +214,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isReference: 0
-  referenceTransform: {fileID: 0}
+  reference: {fileID: 0}
+--- !u!114 &372246669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 372246667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e4dba7037145f74486b60150fcc44f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mass: 5.972e+24
 --- !u!23 &372246670
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -383,7 +397,6 @@ GameObject:
   - component: {fileID: 1050881469}
   - component: {fileID: 1050881473}
   - component: {fileID: 1050881472}
-  - component: {fileID: 1050881468}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -391,22 +404,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1050881468
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1050881467}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5002bd644711d2a42bcf7ac97f39c6bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeScale: 1
-  distanceScale: 1
-  velocityScale: 1
-  velocityScaleF: 1
 --- !u!23 &1050881469
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -474,7 +471,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1050881467}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9cccb293f151fc84ca8a9ff20c531493, type: 3}
   m_Name: 
@@ -512,6 +509,7 @@ GameObject:
   - component: {fileID: 1455900614}
   - component: {fileID: 1455900616}
   - component: {fileID: 1455900613}
+  - component: {fileID: 1455900617}
   m_Layer: 0
   m_Name: LocalTime
   m_TagString: Untagged
@@ -604,7 +602,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isReference: 1
-  referenceTransform: {fileID: 0}
+  reference: {fileID: 0}
+--- !u!114 &1455900617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1455900611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e4dba7037145f74486b60150fcc44f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mass: 5.972e+24
 --- !u!1 &1490230406
 GameObject:
   m_ObjectHideFlags: 0
@@ -629,7 +640,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1490230406}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6f1a6bb1cd532004188db0255c1a4a31, type: 3}
   m_Name: 
@@ -795,7 +806,6 @@ GameObject:
   - component: {fileID: 2141332361}
   - component: {fileID: 2141332364}
   - component: {fileID: 2141332359}
-  - component: {fileID: 2141332360}
   - component: {fileID: 2141332365}
   m_Layer: 0
   m_Name: moon
@@ -817,22 +827,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2141332360
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2141332358}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5002bd644711d2a42bcf7ac97f39c6bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeScale: 1
-  distanceScale: 1
-  velocityScale: 1
-  velocityScaleF: 1
 --- !u!23 &2141332361
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -915,13 +909,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2141332358}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9cccb293f151fc84ca8a9ff20c531493, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   orbitTargets:
   - {fileID: 1050881467}
-  initialVelocty: {x: 0, y: -2000, z: 2000}
+  initialVelocty: {x: 0, y: -2000.022, z: 2000.022}
   timeStep: 1
-  mass: 5.972e+24
+  mass: 7.34767309e+22
