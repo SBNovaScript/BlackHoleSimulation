@@ -9,6 +9,8 @@ public class BWEffect : MonoBehaviour
     public GameObject blackHoleObj;
     private Material material;
 
+    public GameObject targetText;
+
     // Creates a private material used to the effect
     void Awake()
     {
@@ -20,23 +22,25 @@ public class BWEffect : MonoBehaviour
     {
         Camera cam = this.gameObject.GetComponent<Camera>();
 
-        Vector3 toEdge = Vector3.Cross(blackHoleObj.transform.position - cam.transform.position, -transform.right);
+        
+
+        Vector3 Edge = blackHoleObj.transform.position + cam.transform.right * rad;
         Vector3 screenPos = cam.WorldToScreenPoint(blackHoleObj.transform.position);
-        Vector3 screenPosEdge = cam.WorldToScreenPoint(blackHoleObj.transform.position + toEdge);
+        Vector3 screenPosEdge = cam.WorldToScreenPoint(Edge);
 
-
+        targetText.GetComponent<RectTransform>().position = new Vector3(screenPos.x, screenPos.y, 0);
 
         Vector2 norm = new Vector2(screenPos.x / Screen.width, screenPos.y / Screen.height);
         Vector2 normEdge = new Vector2(screenPosEdge.x / Screen.width, screenPosEdge.y / Screen.height);
 
-        //Debug.Log("pls");
+        Debug.Log(screenPos);
 
         //Debug.Log(normEdge);
         Shader.SetGlobalVector("_BlackHoleUV", norm);
         Shader.SetGlobalFloat("_BlackHoleUVRadius", Time.time);
         Shader.SetGlobalFloat("_GameTime", Time.time);
         Shader.SetGlobalFloat("_AspectRatio", cam.aspect);
-        Shader.SetGlobalFloat("_Rad", rad);
+        Shader.SetGlobalFloat("_Rad", (norm - normEdge).magnitude);
         Graphics.Blit(source, destination, material);
     }
 }
