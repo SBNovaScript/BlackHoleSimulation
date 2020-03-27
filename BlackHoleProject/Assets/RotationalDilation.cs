@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,11 +14,11 @@ public class RotationalDilation : MonoBehaviour
     {
         if (isReference)
         {
-            //StartCoroutine(RotateObjectStatic(1, Vector3.up, 1));
+            StartCoroutine(RotateObjectStatic(1, Vector3.up, 1));
         }
         else
         {
-            //StartCoroutine(RotateObjectFromReference(1, Vector3.up));
+            StartCoroutine(RotateObjectFromReference(1, Vector3.up));
         }
     }
 
@@ -45,9 +46,9 @@ public class RotationalDilation : MonoBehaviour
 
             float newDistance = distance / 10;
 
-            double timeDilation = PhysicsCalculations.getTimeDilationAmount(1.0, blackHoleMass, 0.01);
+            double timeDilation = PhysicsCalculations.getTimeDilationAmount(1.0, blackHoleMass, Math.Pow(distance, 3));
 
-            float rotationSpeed = (float)timeDilation;
+            float rotationSpeed = 1.0f - (float)timeDilation;
 
             Debug.Log(rotationSpeed);
 
