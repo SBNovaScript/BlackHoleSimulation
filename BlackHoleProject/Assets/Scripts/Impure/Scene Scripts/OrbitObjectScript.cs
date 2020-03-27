@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 
-public class OrbitObject : MonoBehaviour
+public class OrbitObjectScript : MonoBehaviour
 {
     public GameObject[] orbitTargets;
     public Vector3 initialVelocty;
     public float timeStep;
-    public double mass = PhysicsConstants.EARTH_MASS;
+    public double mass;
     private Rigidbody rb;
     private ScaleManagerScript scaleManager;
 
@@ -16,7 +16,20 @@ public class OrbitObject : MonoBehaviour
         initialVelocty.z = (float)((double)initialVelocty.z / scaleManager.velocityScale);
         initialVelocty.y = (float)((double)initialVelocty.y / scaleManager.velocityScale);
 
-        rb.velocity = initialVelocty;
+        if (Mathf.Abs(initialVelocty.x) == Mathf.Infinity || Mathf.Abs(initialVelocty.x) == Mathf.Infinity || Mathf.Abs(initialVelocty.x) == Mathf.Infinity)
+        {
+            rb.velocity = Vector3.zero;
+        }
+
+        else if (float.IsNaN(initialVelocty.x) || float.IsNaN(initialVelocty.y) || float.IsNaN(initialVelocty.z))
+        {
+            rb.velocity = Vector3.zero;
+        }
+
+        else
+        {
+            rb.velocity = initialVelocty;
+        }
     }
 
 
@@ -28,7 +41,7 @@ public class OrbitObject : MonoBehaviour
             orbitTarget = orbitTargets[i];
             Vector3 gravDir = orbitTarget.transform.position - gameObject.transform.position;
             double mag = (double)gravDir.magnitude;
-            double gravForce = PhysicsCalculations.getGravitationalForceBasic(orbitTarget.GetComponent<OrbitObject>().mass, mag * scaleManager.distanceScale / 1000);
+            double gravForce = PhysicsCalculations.getGravitationalForceBasic(orbitTarget.GetComponent<OrbitObjectScript>().mass, mag * scaleManager.distanceScale / 1000);
 
             gravDir.Normalize();
             //gravForce = PhysicsCalculations.getAccelerationFromForce(mass, gravForce);

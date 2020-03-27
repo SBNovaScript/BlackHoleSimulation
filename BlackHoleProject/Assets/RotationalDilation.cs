@@ -13,11 +13,11 @@ public class RotationalDilation : MonoBehaviour
     {
         if (isReference)
         {
-            StartCoroutine(RotateObjectStatic(1, Vector3.up, 1));
+            //StartCoroutine(RotateObjectStatic(1, Vector3.up, 1));
         }
         else
         {
-            StartCoroutine(RotateObjectFromReference(1, Vector3.up));
+            //StartCoroutine(RotateObjectFromReference(1, Vector3.up));
         }
     }
 

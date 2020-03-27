@@ -9,13 +9,13 @@ public class MovePingPong : MonoBehaviour
     public GameObject blackHole;
     public bool isBlackHole = false;
 
-    private OrbitObject orbitObject;
+    private OrbitObjectScript orbitObject;
 
 
     private void Start() {
         if (isBlackHole)
         {
-            orbitObject = blackHole.GetComponent<OrbitObject>();
+            orbitObject = blackHole.GetComponent<OrbitObjectScript>();
         }
     }
 
