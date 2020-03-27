@@ -44,13 +44,13 @@ public class RotationalDilation : MonoBehaviour
             float distance = Vector3.Distance(this.transform.position, reference.transform.position);
             //float newDistance = 0.005f + (distance - 0) * (0.1f - 0.005f) / (20f - 0);
 
-            float newDistance = distance / 10;
+            float newDistance = distance;
 
-            double timeDilation = PhysicsCalculations.getTimeDilationAmount(1.0, blackHoleMass, Math.Pow(distance, 3));
+            double timeDilation = PhysicsCalculations.getTimeDilationAmount(1.0, blackHoleMass, distance);
 
             float rotationSpeed = 1.0f - (float)timeDilation;
 
-            Debug.Log(rotationSpeed);
+            Debug.Log(distance);
 
             transform.Rotate(axis, rotationSpeed);
 
