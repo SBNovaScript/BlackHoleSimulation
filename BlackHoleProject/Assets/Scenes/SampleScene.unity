@@ -366,7 +366,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534669902}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cbfef6f8d313e0647b4b2d82c53f1126, type: 3}
   m_Name: 
@@ -814,9 +814,9 @@ GameObject:
   - component: {fileID: 2141332362}
   - component: {fileID: 2141332361}
   - component: {fileID: 2141332364}
-  - component: {fileID: 2141332365}
   - component: {fileID: 2141332359}
   - component: {fileID: 2141332360}
+  - component: {fileID: 2141332365}
   m_Layer: 0
   m_Name: moon
   m_TagString: Untagged
@@ -935,13 +935,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2141332358}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9cccb293f151fc84ca8a9ff20c531493, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orbitTargets:
-  - {fileID: 1050881467}
-  initialVelocty: {x: 0, y: -2000.022, z: 2000.022}
-  timeStep: 1
-  mass: 7.34767309e+22
+  orbitTargets: []
+  initialVelocty: {x: 0, y: 0, z: 0}
+  timeStep: 0
+  mass: 5.972e+24
