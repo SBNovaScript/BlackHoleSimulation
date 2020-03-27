@@ -5,7 +5,7 @@ public class OrbitObjectScript : MonoBehaviour
     public GameObject[] orbitTargets;
     public Vector3 initialVelocty;
     public float timeStep;
-    public double mass = PhysicsConstants.EARTH_MASS;
+    public double mass;
     private Rigidbody rb;
     private ScaleManagerScript scaleManager;
 
@@ -16,12 +16,12 @@ public class OrbitObjectScript : MonoBehaviour
         initialVelocty.z = (float)((double)initialVelocty.z / scaleManager.velocityScale);
         initialVelocty.y = (float)((double)initialVelocty.y / scaleManager.velocityScale);
 
-        if (float.IsInfinity(Mathf.Abs(initialVelocty.x)) || float.IsInfinity(Mathf.Abs(initialVelocty.y)) || float.IsInfinity(Mathf.Abs(initialVelocty.z)))
+        if (Mathf.Abs(initialVelocty.x) == Mathf.Infinity || Mathf.Abs(initialVelocty.x) == Mathf.Infinity || Mathf.Abs(initialVelocty.x) == Mathf.Infinity)
         {
             rb.velocity = Vector3.zero;
         }
 
-        else if (float.IsNaN(Mathf.Abs(initialVelocty.x)) || float.IsNaN(Mathf.Abs(initialVelocty.y)) || float.IsNaN(Mathf.Abs(initialVelocty.z)))
+        else if (float.IsNaN(initialVelocty.x) || float.IsNaN(initialVelocty.y) || float.IsNaN(initialVelocty.z))
         {
             rb.velocity = Vector3.zero;
         }
@@ -30,9 +30,6 @@ public class OrbitObjectScript : MonoBehaviour
         {
             rb.velocity = initialVelocty;
         }
-        Debug.Log(rb.velocity);
-
-
     }
 
 
@@ -54,8 +51,6 @@ public class OrbitObjectScript : MonoBehaviour
             rb.velocity += gravDir;
 
         }
-        //initialVelocty = rb.velocity;
-        //Debug.Log(rb.velocity);
-
+        initialVelocty = rb.velocity;
     }
 }
