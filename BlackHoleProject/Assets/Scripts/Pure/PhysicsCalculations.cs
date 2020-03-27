@@ -2,11 +2,15 @@
 
 public static class PhysicsCalculations
 {
+
+    public static double CalculateSchwarzschild(double mass)
+    {
+        return (2.0 * PhysicsConstants.G * mass) / (Math.Pow(PhysicsConstants.c, 2.0));
+    }
+
     public static float CalculateSchwarzschildToFloat(double mass)
     {
-        double schwarzschildRadius = (2 * PhysicsConstants.G * mass) / (Math.Pow(PhysicsConstants.c, 2));
-
-        return ConvertDoubleToFloat(schwarzschildRadius);
+        return ConvertDoubleToFloat(CalculateSchwarzschild(mass));
     }
 
     public static double CaclulateEscapeVelocityToFloat(double mass, double radius)
@@ -49,6 +53,6 @@ public static class PhysicsCalculations
 
     public static double getTimeDilationAmount(double changeInTime, double mass, double distance)
     {
-        return changeInTime * (Math.Sqrt(1 - ((2 * PhysicsConstants.G * mass) / (distance * Math.Pow(PhysicsConstants.c, 2)))));
+        return changeInTime * Math.Sqrt(1.0 - ((CalculateSchwarzschild(mass) / distance)));
     }
 }

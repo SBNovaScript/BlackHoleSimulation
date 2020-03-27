@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,11 +14,11 @@ public class RotationalDilation : MonoBehaviour
     {
         if (isReference)
         {
-            //StartCoroutine(RotateObjectStatic(1, Vector3.up, 1));
+            StartCoroutine(RotateObjectStatic(1, Vector3.up, 1));
         }
         else
         {
-            //StartCoroutine(RotateObjectFromReference(1, Vector3.up));
+            StartCoroutine(RotateObjectFromReference(1, Vector3.up));
         }
     }
 
@@ -35,25 +36,29 @@ public class RotationalDilation : MonoBehaviour
 
     IEnumerator RotateObjectFromReference(float angle, Vector3 axis)
     {
-
         double blackHoleMass = reference.GetComponent<CelestialObject>().mass;
 
         while (true)
         {
             float distance = Vector3.Distance(this.transform.position, reference.transform.position);
-            float newDistance = 0.005f + (distance - 0) * (0.1f - 0.005f) / (20f - 0);
 
-            double timeDilation = PhysicsCalculations.getTimeDilationAmount(1.0, blackHoleMass, distance);
+            float rotationSpeed = GetRotationSpeed(blackHoleMass, distance);
 
-            
-
-            float rotationSpeed = (1.0f / (float)timeDilation);
-
-            Debug.Log(rotationSpeed);
-
-            transform.Rotate(axis, 1.0f);
+            transform.Rotate(axis, rotationSpeed);
 
             yield return null;
         }
+    }
+
+    private static float GetRotationSpeed(double blackHoleMass, float distance)
+    {
+        // 0.1, 7.0
+        // 0.009, 1.0
+        double newDistance = 0.009 + ((distance - 0.1) * (1.0 - 0.009)) / (6.0 - 0.1);
+
+        double timeDilation = PhysicsCalculations.getTimeDilationAmount(1.0, blackHoleMass, newDistance);
+
+        float rotationSpeed = (1.0f - (float)timeDilation) + 0.2f;
+        return rotationSpeed;
     }
 }
