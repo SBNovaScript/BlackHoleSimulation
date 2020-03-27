@@ -29,7 +29,7 @@ public class BWEffect : MonoBehaviour
         Vector2 norm = new Vector2(screenPos.x / Screen.width, screenPos.y / Screen.height);
         Vector2 normEdge = new Vector2(screenPosEdge.x / Screen.width, screenPosEdge.y / Screen.height);
 
-        Debug.Log("pls");
+        //Debug.Log("pls");
 
         //Debug.Log(normEdge);
         Shader.SetGlobalVector("_BlackHoleUV", norm);

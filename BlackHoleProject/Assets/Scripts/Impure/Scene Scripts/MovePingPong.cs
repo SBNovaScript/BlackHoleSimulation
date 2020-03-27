@@ -16,7 +16,6 @@ public class MovePingPong : MonoBehaviour
         if (isBlackHole)
         {
             orbitObject = blackHole.GetComponent<OrbitObject>();
-            Debug.Log("a");
         }
     }
 
@@ -26,15 +25,16 @@ public class MovePingPong : MonoBehaviour
         {
             float distance = Vector3.Distance(blackHole.transform.position, properTimeFrame.transform.position);
             float newDistance = 0.005f + (distance - 0) * (0.1f - 0.005f) / (20f - 0);
-            
-            float timeDilation = 1.0f - (float)PhysicsCalculations.getTimeDilationAmount(1.0, orbitObject.mass, newDistance);
-            Debug.Log(timeDilation);
 
-            transform.position = new Vector3(Mathf.PingPong(Time.time * timeDilation, 0.5f), transform.position.y, transform.position.z);
-        } else
-        {
-            transform.position = new Vector3(Mathf.PingPong(Time.time, 1), transform.position.y, transform.position.z);
+            float timeDilation = 1.0f - (float)PhysicsCalculations.getTimeDilationAmount(1.0, orbitObject.mass, distance);
+
+            //Debug.Log(timeDilation);
         }
+        //    transform.position = new Vector3(Mathf.PingPong(Time.time * timeDilation, 0.5f), transform.position.y, transform.position.z);
+        //} else
+        //{
+        //    transform.position = new Vector3(Mathf.PingPong(Time.time, 1), transform.position.y, transform.position.z);
+        //}
         
     }
 }
