@@ -4,9 +4,18 @@ using UnityEngine;
 
 public class RotationalDilation : MonoBehaviour
 {
+    public bool isReference = false;
+
+    [Header("Black Hole Settings")]
+    public Transform referenceTransform;
+
     void Start()
     {
-        StartCoroutine(RotateObject(1, Vector3.up, 1));
+        if (isReference)
+        {
+            StartCoroutine(RotateObject(1, Vector3.up, 1));
+
+        }
     }
 
     IEnumerator RotateObject(float angle, Vector3 axis, float inTime)
