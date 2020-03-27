@@ -36,25 +36,29 @@ public class RotationalDilation : MonoBehaviour
 
     IEnumerator RotateObjectFromReference(float angle, Vector3 axis)
     {
-
         double blackHoleMass = reference.GetComponent<CelestialObject>().mass;
 
         while (true)
         {
             float distance = Vector3.Distance(this.transform.position, reference.transform.position);
-            //float newDistance = 0.005f + (distance - 0) * (0.1f - 0.005f) / (20f - 0);
 
-            float newDistance = distance;
-
-            double timeDilation = PhysicsCalculations.getTimeDilationAmount(1.0, blackHoleMass, distance);
-
-            float rotationSpeed = 1.0f - (float)timeDilation;
-
-            Debug.Log(distance);
+            float rotationSpeed = GetRotationSpeed(blackHoleMass, distance);
 
             transform.Rotate(axis, rotationSpeed);
 
             yield return null;
         }
+    }
+
+    private static float GetRotationSpeed(double blackHoleMass, float distance)
+    {
+        // 0.1, 7.0
+        // 0.009, 1.0
+        double newDistance = 0.009 + ((distance - 0.1) * (1.0 - 0.009)) / (6.0 - 0.1);
+
+        double timeDilation = PhysicsCalculations.getTimeDilationAmount(1.0, blackHoleMass, newDistance);
+
+        float rotationSpeed = (1.0f - (float)timeDilation) + 0.2f;
+        return rotationSpeed;
     }
 }

@@ -53,6 +53,6 @@ public static class PhysicsCalculations
 
     public static double getTimeDilationAmount(double changeInTime, double mass, double distance)
     {
-        return changeInTime * Math.Sqrt(Math.Abs(1.0 - ((CalculateSchwarzschild(mass) / distance))));
+        return changeInTime * Math.Sqrt(1.0 - ((CalculateSchwarzschild(mass) / distance)));
     }
 }
