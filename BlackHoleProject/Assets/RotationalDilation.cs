@@ -40,7 +40,8 @@ public class RotationalDilation : MonoBehaviour
 
         while (true)
         {
-            float distance = Vector3.Distance(this.transform.position, reference.transform.position);
+            float distance = Math.Abs(this.transform.position.z - reference.transform.position.z);
+            //float distance = Vector3.Distance(this.transform.position, reference.transform.position);
 
             float rotationSpeed = GetRotationSpeed(blackHoleMass, distance);
 
@@ -52,13 +53,15 @@ public class RotationalDilation : MonoBehaviour
 
     private static float GetRotationSpeed(double blackHoleMass, float distance)
     {
-        // 0.1, 7.0
+        // 0.01, 2.5
         // 0.009, 1.0
-        double newDistance = 0.009 + ((distance - 0.1) * (1.0 - 0.009)) / (6.0 - 0.1);
+        
+        double newDistance = 0.009 + ((distance - 0.01) * (1.0 - 0.009)) / (2.5 - 0.01);
 
         double timeDilation = PhysicsCalculations.getTimeDilationAmount(1.0, blackHoleMass, newDistance);
 
         float rotationSpeed = (1.0f - (float)timeDilation) + 0.2f;
+
         return rotationSpeed;
     }
 }
