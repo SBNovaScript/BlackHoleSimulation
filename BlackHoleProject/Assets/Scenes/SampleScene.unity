@@ -1190,7 +1190,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orbitTargets:
   - {fileID: 1050881467}
-  initialVelocty: {x: 0, y: -2000.022, z: 2000.022}
+  initialVelocty: {x: 0, y: -2500.022, z: 2500.022}
   timeStep: 1
   mass: 7.34767309e+20
 --- !u!23 &2141332361
