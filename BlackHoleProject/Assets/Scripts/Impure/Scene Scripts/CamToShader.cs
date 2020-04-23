@@ -11,6 +11,8 @@ public class CamToShader : MonoBehaviour
     public GameObject BH;
     public GameObject[] targets;
     public GameObject[] Cy_targets;
+    public Texture DiskTexture;
+
     [Range(0, 1)]
     public float rad;
 
@@ -86,6 +88,12 @@ public class CamToShader : MonoBehaviour
             MyMaterial.SetInt("_NumCyTargets", ptArray_cy.Length);
             MyMaterial.SetVectorArray("_CyTargetsPos", ptArray_cy);
             MyMaterial.SetVectorArray("_CyTargetsShape", shapeArray_cy);
+
+            
+            MyMaterial.SetFloat("_GameTime", Time.time);
+
+
+            MyMaterial.SetTexture("_DiskTexture", DiskTexture);
 
 
             //MyMaterial.SetMatrix("_DiskMat", Disk.transform.worldToLocalMatrix);
