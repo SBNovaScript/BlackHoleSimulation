@@ -3,9 +3,9 @@
 public class OrbitObjectScript : MonoBehaviour
 {
     public GameObject[] orbitTargets;
-    public Vector3 initialVelocty;
-    public float timeStep;
-    public double mass;
+    public Vector3 initialVelocty = new Vector3( 0, -2000.022f, 2000.022f );
+    public float timeStep = 1;
+    public double mass = PhysicsConstants.MOON_MASS;
     private Rigidbody rb;
     private ScaleManagerScript scaleManager;
 
