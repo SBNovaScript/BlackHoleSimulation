@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ScaleManagerScript : MonoBehaviour
 {
@@ -20,5 +18,10 @@ public class ScaleManagerScript : MonoBehaviour
     {
         velocityScale = distanceScale / timeScale;
         velocityScaleF = (float)velocityScale;
+    }
+
+    void OnReduceTime()
+    {
+        timeScale -= 40000;
     }
 }
