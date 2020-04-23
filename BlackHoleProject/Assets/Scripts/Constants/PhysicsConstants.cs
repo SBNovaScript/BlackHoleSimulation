@@ -13,4 +13,7 @@ public static class PhysicsConstants
 
     // Earth's Mass (kg)
     public const double EARTH_MASS = 5.972e24;
+
+    // The Moon's Mass (kg)
+    public const double MOON_MASS = 7.34767309e22;
 }

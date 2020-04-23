@@ -17,7 +17,7 @@ public class CamToShader : MonoBehaviour
     // Creates a private material used to the effect
     void Awake()
     {
-        MyShade = Shader.Find("Unlit/black_hole_hack");
+        MyShade = Shader.Find("Unlit/RayTracer");
         MyMaterial = new Material(MyShade);
 
     }
@@ -31,7 +31,6 @@ public class CamToShader : MonoBehaviour
 
     void OnRenderImage(RenderTexture source, RenderTexture destination)
     {
-
         if (!MyMaterial)
         {
             Graphics.Blit(source, destination);
