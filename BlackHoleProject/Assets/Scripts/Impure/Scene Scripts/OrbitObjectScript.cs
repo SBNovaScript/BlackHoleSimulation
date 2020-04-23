@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class OrbitObjectScript : MonoBehaviour
 {
-    public GameObject[] orbitTargets;
+    public List<GameObject> orbitTargets = new List<GameObject>();
     public Vector3 initialVelocty = new Vector3( 0, -2000.022f, 2000.022f );
     public float timeStep = 1;
     public double mass = PhysicsConstants.MOON_MASS;
@@ -11,6 +12,7 @@ public class OrbitObjectScript : MonoBehaviour
 
     private void Start()
     {
+        orbitTargets.Add(GameObject.FindWithTag("BlackHole"));
         scaleManager = GameObject.Find("ScaleManager").GetComponent<ScaleManagerScript>();
         rb = gameObject.GetComponent<Rigidbody>();
         initialVelocty.z = (float)((double)initialVelocty.z / scaleManager.velocityScale);
@@ -36,7 +38,7 @@ public class OrbitObjectScript : MonoBehaviour
     private void FixedUpdate()
     {
         GameObject orbitTarget;
-        for (int i = 0; i < orbitTargets.Length; i++)
+        for (int i = 0; i < orbitTargets.Count; i++)
         {
             orbitTarget = orbitTargets[i];
             Vector3 gravDir = orbitTarget.transform.position - gameObject.transform.position;
