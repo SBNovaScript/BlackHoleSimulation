@@ -10,6 +10,7 @@ public class CamToShader : MonoBehaviour
     public GameObject Disk;
     public GameObject BH;
     public GameObject[] targets;
+    public GameObject[] Cy_targets;
     [Range(0, 1)]
     public float rad;
 
@@ -41,11 +42,11 @@ public class CamToShader : MonoBehaviour
             Vector3[] FrustumCorners = new Vector3[4];
             Vector3[] NormCorners = new Vector3[4];
 
-            Vector4[] ptArray;
-            float[] radArray;
+            Vector4[] ptArray = new Vector4[targets.Length];
+            float[] radArray = new float[targets.Length];
 
-            ptArray = new Vector4[targets.Length];
-            radArray = new float[targets.Length];
+            Vector4[] ptArray_cy = new Vector4[Cy_targets.Length];
+            Vector4[] shapeArray_cy = new Vector4[Cy_targets.Length];
 
             MyCam = this.gameObject.GetComponent<Camera>();
 
@@ -53,6 +54,12 @@ public class CamToShader : MonoBehaviour
             {
                 ptArray[i] = MyCam.worldToCameraMatrix.MultiplyPoint(targets[i].transform.position);
                 radArray[i] = targets[i].transform.localScale.x;
+            }
+
+            for (int i = 0; i < Cy_targets.Length; i++)
+            {
+                ptArray_cy[i] = MyCam.worldToCameraMatrix.MultiplyPoint(Cy_targets[i].transform.position);
+                shapeArray_cy[i] = Cy_targets[i].transform.localScale;
             }
 
 
@@ -75,6 +82,10 @@ public class CamToShader : MonoBehaviour
             MyMaterial.SetInt("_NumSphereTargets", ptArray.Length);
             MyMaterial.SetVectorArray("_SphereTargetsPos", ptArray);
             MyMaterial.SetFloatArray("_SphereTargetsRad", radArray);
+
+            MyMaterial.SetInt("_NumCyTargets", ptArray_cy.Length);
+            MyMaterial.SetVectorArray("_CyTargetsPos", ptArray_cy);
+            MyMaterial.SetVectorArray("_CyTargetsShape", shapeArray_cy);
 
 
             //MyMaterial.SetMatrix("_DiskMat", Disk.transform.worldToLocalMatrix);

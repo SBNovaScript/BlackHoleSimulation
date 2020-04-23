@@ -36,6 +36,10 @@
 			float4 _SphereTargetsPos[4];
 			float _SphereTargetsRad[4];
 
+			int _NumCyTargets;
+			float4 _CyTargetsPos[4];
+			float4 _CyTargetsShape[4];
+
 
 			struct appdata
 			{
@@ -65,6 +69,7 @@
 				int numSteps = 5000;
 				float stepSize = 0.01;
 				float3 bh = _BHPos;
+				float G = 0.0000000000667430;
 
 				float4 NormalLeft;
 				float4 NormalRight;
@@ -94,19 +99,41 @@
 						}
 					}*/
 
+					float3 dir = _BHPos - pos;
+					float dist = length(dir);
+					float mm = 200000;
+					float grav = G * mm / (dist * dist);
+					dir = normalize(dir);
+					stepH += dir * grav;
+
 					if (distance(pos, _BHPos) < _BHRad)
 					{
-						col = float4(0.5, 0, 0.5, 1);
+						col = float4(0, 0, 0, 1);
 						break;
 					}
-
-					
+/*
 					for (int j = 0; j < _NumSphereTargets; j++)
 					{
 						if (distance(pos, _SphereTargetsPos[j]) < _SphereTargetsRad[j])
 						{
 							col = float4(1, 1, 1, 1);
+							i = numSteps;
 							break;
+						}
+					}*/
+
+					
+					for (int k = 0; k < _NumSphereTargets; k++)
+					{
+						if (distance(pos.xz, _CyTargetsPos[k].xz) < _CyTargetsShape[k].x)
+						{
+							if (abs(pos.y - _CyTargetsPos[k].y) < _CyTargetsShape[k].y)
+							{
+								col = float4(1, 1, 1, 1);
+								i = numSteps;
+								break;
+							}
+							
 						}
 					}
 					
