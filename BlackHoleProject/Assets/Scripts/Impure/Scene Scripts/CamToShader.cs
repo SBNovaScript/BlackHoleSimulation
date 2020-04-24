@@ -6,12 +6,12 @@ using UnityEngine;
 public class CamToShader : MonoBehaviour
 {
     private Material MyMaterial;
-    private Shader MyShade;
     public GameObject Disk;
     public GameObject BH;
     public GameObject[] targets;
     public GameObject[] Cy_targets;
     public Texture DiskTexture;
+    public Shader MyShade;
 
     [Range(0, 1)]
     public float rad;
@@ -20,7 +20,7 @@ public class CamToShader : MonoBehaviour
     // Creates a private material used to the effect
     void Awake()
     {
-        MyShade = Shader.Find("Unlit/RayTracer");
+        //MyShade = Shader.Find("Unlit/RayTracer");
         MyMaterial = new Material(MyShade);
 
     }

@@ -174,7 +174,7 @@ Shader "Unlit/RayTracer"
 				}
 				if (diskUV.x != -1)
 				{
-					col = _DiskTexture.Sample(sampler_MainTex, diskUV);
+					col = _DiskTexture.Sample(sampler_MainTex, diskUV) * diskUV.y * 1.4;
 				}
 				return col;
 			}
