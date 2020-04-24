@@ -41,9 +41,6 @@ public class CamToShader : MonoBehaviour
         }
         else
         {
-            Vector3[] FrustumCorners = new Vector3[4];
-            Vector3[] NormCorners = new Vector3[4];
-
             Vector4[] ptArray = new Vector4[targets.Length];
             float[] radArray = new float[targets.Length];
 
@@ -54,30 +51,17 @@ public class CamToShader : MonoBehaviour
 
             for (int i = 0; i < targets.Length; i++)
             {
-                ptArray[i] = MyCam.worldToCameraMatrix.MultiplyPoint(targets[i].transform.position);
+                ptArray[i] = targets[i].transform.position;
                 radArray[i] = targets[i].transform.localScale.x;
             }
 
             for (int i = 0; i < Cy_targets.Length; i++)
             {
-                ptArray_cy[i] = MyCam.worldToCameraMatrix.MultiplyPoint(Cy_targets[i].transform.position);
+                ptArray_cy[i] = Cy_targets[i].transform.position;
                 shapeArray_cy[i] = Cy_targets[i].transform.localScale;
             }
 
-
-            MyCam.CalculateFrustumCorners(new Rect(0, 0, 1, 1), MyCam.farClipPlane, Camera.MonoOrStereoscopicEye.Mono, FrustumCorners);
-            for (int i = 0; i < 4; i++)
-            {
-                NormCorners[i] = MyCam.transform.TransformVector(FrustumCorners[i]);
-                NormCorners[i] = NormCorners[i].normalized;
-            }
-            MyMaterial.SetVector("_BL", NormCorners[0]);
-            MyMaterial.SetVector("_TL", NormCorners[1]);
-            MyMaterial.SetVector("_TR", NormCorners[2]);
-            MyMaterial.SetVector("_BR", NormCorners[3]);
-
-
-            MyMaterial.SetVector("_BHPos", MyCam.worldToCameraMatrix.MultiplyPoint(BH.transform.position));
+            MyMaterial.SetVector("_BHPos",BH.transform.position);
             Shader.SetGlobalFloat("_BHRad", (MyCam.transform.right * rad).magnitude);
 
 
@@ -94,6 +78,13 @@ public class CamToShader : MonoBehaviour
 
 
             MyMaterial.SetTexture("_DiskTexture", DiskTexture);
+
+            MyMaterial.SetMatrix("_CameraInverseProjection", MyCam.projectionMatrix.inverse);
+
+
+            MyMaterial.SetInt("_Width", Screen.width);
+            MyMaterial.SetInt("_Height", Screen.height);
+
 
 
             //MyMaterial.SetMatrix("_DiskMat", Disk.transform.worldToLocalMatrix);

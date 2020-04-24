@@ -1,4 +1,10 @@
-﻿Shader "Unlit/RayTracer"
+﻿// Upgrade NOTE: replaced '_CameraToWorld' with 'unity_CameraToWorld'
+
+// Upgrade NOTE: replaced '_CameraToWorld' with 'unity_CameraToWorld'
+
+// Upgrade NOTE: commented out 'float4x4 _CameraToWorld', a built-in variable
+
+Shader "Unlit/RayTracer"
 {
 	Properties
 	{
@@ -33,6 +39,12 @@
 			float4 _BHPos;
 			float _BHRad;
 
+			int _Width;
+			int _Height;
+
+			// float4x4 _CameraToWorld;
+			float4x4 _CameraInverseProjection;
+
 			float4x4 _DiskMat;
 
 			int _NumSphereTargets;
@@ -64,9 +76,13 @@
 				//o.uv = TRANSFORM_TEX(v.uv, _MainTex);
 				o.uv = v.uv;
 				UNITY_TRANSFER_FOG(o,o.vertex);
+				UNITY_VERTEX_OUTPUT_STEREO
+
 				return o;
 			}
 		
+
+
 			fixed4 frag(v2f i) : SV_Target
 			{
 				int numSteps = 2500;
@@ -74,26 +90,21 @@
 				float3 bh = _BHPos;
 				float G = 0.0000000000667430;
 				float PI = 3.1414;
+				float4 col = _MainTex.Sample(sampler_MainTex, i.uv);
+				float2 newUV = i.uv * 2 - float2(1, 1);
+				newUV *= -1;
 
-				float4 NormalLeft;
-				float4 NormalRight;
-				float4 NormalH;
-				fixed4 col = _MainTex.Sample(sampler_MainTex, i.uv);
-				NormalLeft = lerp(_BL, _TL,i.uv.y);
-				NormalRight = lerp(_BR, _TR, i.uv.y);
-				NormalH = lerp(NormalLeft, NormalRight,i.uv.x);
-				NormalH = normalize(NormalH);
+				float3 stepH = mul(_CameraInverseProjection, float4(newUV.x, newUV.y, 0.f, 1.0f)).xyz;
+				stepH = mul(unity_CameraToWorld, float4(stepH, 0.0f)).xyz;
+				stepH *= -1 * stepSize;
 
-				float3 stepH = NormalH.xyz * stepSize;
-				stepH.z *= -1;
 				float3 pos = float3(0, 0, 0);
-
+				pos = _WorldSpaceCameraPos;
 
 				float2 diskUV = float2(-1, -1);
 
 				for (int i = 0; i < numSteps; i++)
 				{
-					pos += stepH;
 					/*float4 fourPos = float4(pos.x, pos.y, pos.z, 1);
 					float4 newPos = mul(_DiskMat, fourPos);
 
@@ -108,8 +119,13 @@
 
 					float3 dir = _BHPos - pos;
 					float dist = length(dir);
-					float mm = 300000;
-					float grav = G * mm / (dist * dist);
+					float mass = 59700000000.0 * _BHRad;
+					float c = 299;
+					float grav = (4 * G * mass) / (dist * dist * c * c);
+					if (length(grav > 1))
+					{
+						i += 5;
+					}
 					dir = normalize(dir);
 					stepH += dir * grav;
 
@@ -118,7 +134,7 @@
 						col = float4(0, 0, 0, 1);
 						break;
 					}
-/*
+					/*
 					for (int j = 0; j < _NumSphereTargets; j++)
 					{
 						if (distance(pos, _SphereTargetsPos[j]) < _SphereTargetsRad[j])
@@ -143,8 +159,6 @@
 								deg /= 2 * PI;
 								deg = fmod(deg + _GameTime / 5, 1.0);
 								diskUV = float2(deg, shade);
-								//diskUV = float2(0.5, 0.5);
-								//fixed4 diskCol = _MainTex.Sample(sampler_MainTex, diskUV);
 
 								col = float4( deg, 0, 1 - deg, 1);
 								i = numSteps;
@@ -154,13 +168,14 @@
 							
 						}
 					}
+					pos += stepH;
+
 					
 				}
 				if (diskUV.x != -1)
 				{
 					col = _DiskTexture.Sample(sampler_MainTex, diskUV);
 				}
-
 				return col;
 			}
 				ENDCG
