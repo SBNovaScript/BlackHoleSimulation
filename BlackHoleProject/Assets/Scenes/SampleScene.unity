@@ -1940,8 +1940,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dacd57e6ffa5ef54fa46e358434c307a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amount: -0.05
+  amountToScaleBlackHole: -0.05
   blackHoleShader: {fileID: 534669907}
+  objectToScale: {fileID: 332890407}
+  amountToScaleConsoleObject: -0.02
 --- !u!65 &1481266334
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2182,8 +2184,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dacd57e6ffa5ef54fa46e358434c307a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amount: 0.05
+  amountToScaleBlackHole: 0.05
   blackHoleShader: {fileID: 534669907}
+  objectToScale: {fileID: 332890407}
+  amountToScaleConsoleObject: 0.02
 --- !u!65 &1694988269
 BoxCollider:
   m_ObjectHideFlags: 0
