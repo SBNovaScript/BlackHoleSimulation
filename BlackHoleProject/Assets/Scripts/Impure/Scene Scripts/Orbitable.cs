@@ -38,6 +38,12 @@ public class Orbitable : MonoBehaviour
         }
     }
 
+    void OnToggleOrbitObject()
+    {
+        MeshRenderer meshRenderer = GetComponent<MeshRenderer>();
+        meshRenderer.enabled = !meshRenderer.enabled;
+    }
+
     private IEnumerator MoveToStart()
     {
         Vector3 currentPosition = this.gameObject.transform.position;

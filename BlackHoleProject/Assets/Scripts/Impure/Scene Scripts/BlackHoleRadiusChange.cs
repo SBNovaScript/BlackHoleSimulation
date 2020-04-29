@@ -9,6 +9,10 @@ public class BlackHoleRadiusChange : MonoBehaviour
 
     void OnSelect()
     {
-        blackHoleShader.rad += amount;
+        float newAmount = blackHoleShader.rad + amount;
+        if (newAmount > 0 && newAmount < 1)
+        {
+            blackHoleShader.rad += amount;
+        }
     }
 }

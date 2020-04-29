@@ -6,7 +6,7 @@ public class MoveWithCamera : MonoBehaviour
 {
 
     public Transform cameraPos;
-    private Vector3 offset = new Vector3(0, -0.1f, -0.7f);
+    public Vector3 offset = new Vector3(0, -0.1f, -0.7f);
 
     void Update()
     {
